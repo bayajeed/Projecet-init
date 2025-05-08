@@ -8,5 +8,7 @@ def about(request):
     return render(request, 'about.html')
 def header(request):
     return render(request, 'header.html')
+def tech(request):
+    return render(request, 'tech.html')
 
 
