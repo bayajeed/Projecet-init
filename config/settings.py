@@ -129,13 +129,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
-STATIC_ROOT = BASE_DIR / 'staticfiles'   # for Collection static assets in Production.
-#global static file 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static', # globally use korar jonno , app er bahire jeta ba project er vitor a jei "static"
-    BASE_DIR / 'Ecom/static',
-]
+# STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
+# STATIC_ROOT = BASE_DIR / 'staticfiles'   # for Collection static assets in Production.
+# #global static file 
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static', # globally use korar jonno , app er bahire jeta ba project er vitor a jei "static"
+#     BASE_DIR / 'Ecom/static',
+# ]
 
 
 # for media files
@@ -158,6 +158,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# import os
-# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'stataic')
+import os
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'stataic')
