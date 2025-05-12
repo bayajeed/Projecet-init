@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-import os
 from pathlib import Path
 
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-ls%*24qx*3hmt^&_*440!zsix3hcz*+d7qu#0jq)^kb5+t^0^f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Ecom',
+    'users',
     'pages',
     'posts',
     'siteSetting',
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -63,6 +62,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'Ecom/templates',
+            BASE_DIR / 'users/templates',
             BASE_DIR / 'pages/templates',
             BASE_DIR / 'posts/templates',
             BASE_DIR / 'siteSetting/templates',
@@ -128,13 +128,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-# STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
-# STATIC_ROOT = BASE_DIR / 'staticfiles'   # for Collection static assets in Production.
-# #global static file 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static', # globally use korar jonno , app er bahire jeta ba project er vitor a jei "static"
-#     BASE_DIR / 'Ecom/static',
-# ]
+STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
+STATIC_ROOT = BASE_DIR / 'staticfiles'   # for Collection static assets in Production.
+#global static file 
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', # globally use korar jonno , app er bahire jeta ba project er vitor a jei "static"
+    BASE_DIR / 'Ecom/static',
+]
 
 
 # for media files
@@ -156,8 +156,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = [os.path.join(BASE_DIR, 'staticfiles_build', 'stataic')]
+# STATIC_URL = 'static/'  # Static_url Development app specific, locally develop er jonno
+# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+# STATIC_ROOT = [os.path.join(BASE_DIR, 'staticfiles_build', 'stataic')]
 
-STATICSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICSTORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
