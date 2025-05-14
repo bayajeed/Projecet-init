@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Ecom',
+    'users',
     'pages',
     'posts',
     'siteSetting',
@@ -62,6 +63,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'Ecom/templates',
+            BASE_DIR / 'users/templates',
             BASE_DIR / 'pages/templates',
             BASE_DIR / 'posts/templates',
             BASE_DIR / 'siteSetting/templates',
