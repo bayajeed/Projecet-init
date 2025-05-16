@@ -11,6 +11,7 @@ class About(models.Model):
     banner_image = models.ImageField(upload_to='about/', blank=True, null=True)
     facebook_link = models.URLField(blank=True, null=True)
     contact_email = models.EmailField(blank=True, null=True)
+    phone = models.IntegerField(blank=True, null = True)
 
     def __str__(self):
         return f'{self.title} - {self.description}'

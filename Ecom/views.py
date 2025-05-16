@@ -10,15 +10,20 @@ def base(request):
 def home(request):
     return render(request, 'home.html')
 def about(request):
-    return render(request, 'about.html')
+    all_about_data = About.objects.all()
+    context = {
+        'all_about': all_about_data
+    }
+    return render(request, 'about.html', context)
+
 def header(request):
     return render(request, 'header.html')
 def tech(request):
     return render(request, 'tech.html')
 
-@api_view('GET')
-def about(self, request):
-    all_about = About.objects.all()
-    serializer = AboutSerializer(all_about, many = True)
-    return Response(serializer.data, status= status.HTTP_200_OK)
+# @api_view(['GET'])
+# def about(self, request):
+#     all_about = About.objects.all()
+#     serializer = AboutSerializer(all_about, many = True)
+#     return Response(serializer.data, status= status.HTTP_200_OK)
     
