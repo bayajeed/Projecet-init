@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login, logout # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from django.contrib.auth.hashers import check_password # type: ignore
 
+from rest_framework import viewsets
+from .serializers import UserSerializer
+
 #from django.http import HttpResponse
 # Create your views here.
 def signin(request):
@@ -48,4 +51,8 @@ def signup(request):
         # user.save() # Save the user
         #return redirect('login') # Redirect to the login page
     return render(request, 'signup.html')
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer(queryset)
     

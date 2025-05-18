@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'corsheaders',
     'Ecom',
     'users',
     'pages',
@@ -57,6 +58,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -149,6 +153,25 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Corsheaders
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React frontend port
+]
+# CORS_ALLOW_ALL_ORIGINS = True
+
+# REST_framework
+
+REST_FRAMEWORK ={
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',
+    'rest_framework.filters.SearchFilter',)
+}
+
+# Custom user
+ACCOUNT_SESSION_REMEMBER = True
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
 
 
 
