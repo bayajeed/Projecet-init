@@ -52,7 +52,10 @@ def signup(request):
         #return redirect('login') # Redirect to the login page
     return render(request, 'signup.html')
 
+
+# for API for All GET POST PUT PATCH
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer(queryset)
     
+

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import Group, Permission
+from django.contrib import admin
 
 USER_OPTIONS = (
     ('user', 'user'),
@@ -46,4 +47,14 @@ class CustomUser(AbstractUser):
         verbose_name = 'Customer'
         verbose_name_plural = 'Customers'
         unique_together = ('email', 'username')
+
+@admin.register(CustomUser)
+class CustomerUserAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "phone",
+        "email",
+        "address",
+        "profile_picture",
+    )
 
