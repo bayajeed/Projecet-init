@@ -5,8 +5,11 @@ from django.contrib.auth import authenticate, login, logout # type: ignore
 from django.contrib.auth.models import User # type: ignore
 from django.contrib.auth.hashers import check_password # type: ignore
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 from .serializers import UserSerializer
+
+from rest_framework.authtoken.views import ObtainAuthToken # login with token
 
 #from django.http import HttpResponse
 # Create your views here.
@@ -56,6 +59,22 @@ def signup(request):
 # for API for All GET POST PUT PATCH
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer(queryset)
+    serializer_class = UserSerializer
+    #serializer_class = UserSerializer(queryset, many = True) # queryset kno dilam, # karon serializer class e queryset pass korte hoy
     
+# login with token
+class CustomAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username')
+        check_user = CustomUser.objects.filter(username=username).first()
+        if not check_user:
+            return Response({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
+        response = super().post(request, *args, **kwargs)
+        token = response.data['token']
+        user = CustomUser.objects.get(username=username)
+        usersirializer = UserSerializer(user)
+        return Response({
+            'token': token,
+            'user': usersirializer.data
+        }, status=status.HTTP_200_OK)

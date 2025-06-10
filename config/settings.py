@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'corsheaders',
+    'corsheaders', # for React frontend to access Django backend
     'Ecom',
     'users',
     'pages',
